@@ -14,7 +14,9 @@ def get_files(path):
 
 
 def main():
-    logging.info('Hello Python!')
+    images = get_files('./images')
+    for img in images:
+        logging.info(img)
 
 
 if __name__ == '__main__':
