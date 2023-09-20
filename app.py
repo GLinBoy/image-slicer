@@ -5,7 +5,7 @@ logging.basicConfig(format='%(levelname)s | %(asctime)s | %(message)s', level=lo
 
 
 def main():
-    print('Hello Python!')
+    logging.info('Hello Python!')
 
 
 if __name__ == '__main__':
