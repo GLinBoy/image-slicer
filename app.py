@@ -1,5 +1,6 @@
 import logging, os
 import cv2
+from fpdf import FPDF
 
 
 logging.basicConfig(format='%(levelname)s | %(asctime)s | %(message)s', level=logging.INFO)
@@ -32,6 +33,16 @@ def get_files(path):
         if (file.endswith('.png') or file.endswith('.jpg')):
             images.append('{}/{}'.format(path, file))
     return images
+
+
+def create_pdf(path, images_path):
+    logging.info("Start to convert images to PDF")
+    pdf = FPDF()
+    # imagelist is the list with all image filenames
+    for image in images_path:
+        pdf.add_page()
+        pdf.image(image, 0, 0, 210, 297)
+    pdf.output("{}/output.pdf".format(path), "F")
 
 
 def main():
