@@ -1,7 +1,28 @@
 import logging, os
+import cv2
 
 
 logging.basicConfig(format='%(levelname)s | %(asctime)s | %(message)s', level=logging.INFO)
+
+
+def split(filepath):
+    directory, file_fullname = os.path.split(filepath)
+    file_name, file_extension = os.path.splitext(file_fullname)
+
+    img = cv2.imread(filepath)
+    print(img.shape)
+    height = img.shape[0]
+    width = img.shape[1]
+
+    # Cut the image in half
+    width_cutoff = width // 2
+    s1 = img[:, :width_cutoff]
+    s2 = img[:, width_cutoff:]
+
+    cv2.imwrite('{}/splitted/{}_left{}'.format(directory,
+                file_name, file_extension), s1)
+    cv2.imwrite('{}/splitted/{}_right{}'.format(directory,
+                file_name, file_extension), s2)
 
 
 def get_files(path):
