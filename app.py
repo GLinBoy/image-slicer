@@ -51,6 +51,10 @@ def main():
     images = get_files('./images')
     for img in images:
         split(img)
+    splitted_images = get_files('./images/splitted')
+    splitted_images = sorted(splitted_images, key=lambda file: (
+        os.path.dirname(file), os.path.basename(file)))
+    create_pdf('./', splitted_images)
 
 
 if __name__ == '__main__':
