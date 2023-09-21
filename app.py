@@ -1,9 +1,11 @@
-import logging, os
+import logging
+import os
 import cv2
 from fpdf import FPDF
 
 
-logging.basicConfig(format='%(levelname)s | %(asctime)s | %(message)s', level=logging.INFO)
+logging.basicConfig(
+    format='%(levelname)s | %(asctime)s | %(message)s', level=logging.INFO)
 
 
 def split(filepath):
@@ -48,7 +50,7 @@ def create_pdf(path, images_path):
 def main():
     images = get_files('./images')
     for img in images:
-        logging.info(img)
+        split(img)
 
 
 if __name__ == '__main__':
